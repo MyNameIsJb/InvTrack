@@ -15,6 +15,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'Unauthorized access.');
+        }
+
         return Inertia::render('Users/Index', [
             'users' => User::query()
                 ->when($request->search, function ($query, $search) {

@@ -7,6 +7,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
     const { url } = usePage();
     const { flash } = usePage().props; // Kunin ang flash props mula sa Inertia
     const [showFlash, setShowFlash] = useState(false);
+    const { auth } = usePage().props;
 
     // Watcher para sa flash message
     useEffect(() => {
@@ -38,13 +39,14 @@ export default function AuthenticatedLayout({ user, header, children }) {
                     <p className="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
                         Main Menu
                     </p>
-
-                    <MenuLink
-                        href={route("users.index")}
-                        active={route().current("users.index")}
-                        icon="👥"
-                        label="User Management"
-                    />
+                    {auth.isAdmin && (
+                        <MenuLink
+                            href={route("users.index")}
+                            active={route().current("users.index")}
+                            icon="👥"
+                            label="User Management"
+                        />
+                    )}
 
                     <MenuLink
                         href={route("dashboard")}
