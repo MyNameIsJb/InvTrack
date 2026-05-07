@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 
 export default function Pagination({ links }) {
-    if (!links || links.length <= 3) return null;
+    if (!links || links.length === 0) return null;
 
     // Filter logic para hindi masyadong mahaba
     // Ipapakita lang natin ang First, Last, Previous, Next, at Active Page

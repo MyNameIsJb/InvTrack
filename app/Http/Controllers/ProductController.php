@@ -42,7 +42,7 @@ class ProductController extends Controller
                     // Siguraduhin na 'category_id' (o 'cat_id') ang column name sa products table mo
                     $query->where('category_id', $categoryId);
                 })
-                ->latest()->paginate(10)->onEachSide(5)->withQueryString(),
+                ->latest()->paginate(5)->onEachSide(5)->withQueryString(),
             'categories' => Category::all(),
             'filters' => $request->only(['search', 'category']),
             'threshold' => $threshold

@@ -26,7 +26,7 @@ class UserController extends Controller
                         ->orWhere('email', 'like', "%{$search}%");
                 })
                 ->latest()
-                ->paginate(10)
+                ->paginate(5)
                 ->onEachSide(1)
                 ->withQueryString(),
             'filters' => $request->only(['search']),

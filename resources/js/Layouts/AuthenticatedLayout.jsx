@@ -40,12 +40,21 @@ export default function AuthenticatedLayout({ user, header, children }) {
                         Main Menu
                     </p>
                     {auth.isAdmin && (
-                        <MenuLink
-                            href={route("users.index")}
-                            active={route().current("users.index")}
-                            icon="👥"
-                            label="User Management"
-                        />
+                        <>
+                            <MenuLink
+                                href={route("users.index")}
+                                active={route().current("users.index")}
+                                icon="👥"
+                                label="User Management"
+                            />
+
+                            <MenuLink
+                                href={route("backups.index")}
+                                active={route().current("backups.index")}
+                                icon="💾" // Pwede mong palitan ang icon
+                                label="Database Backup"
+                            />
+                        </>
                     )}
 
                     <MenuLink

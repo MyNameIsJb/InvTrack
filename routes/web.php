@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
@@ -59,6 +60,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::patch('/settings/profile', [SettingsController::class, 'updateProfile'])->name('settings.profile.update');
     Route::put('/settings/password', [SettingsController::class, 'updatePassword'])->name('settings.password.update');
+
+    Route::get('/backups', [BackupController::class, 'index'])->name('backups.index');
+    Route::post('/backups/create', [BackupController::class, 'create'])->name('backups.create');
+    Route::get('/backups/download/{name}', [BackupController::class, 'download'])->name('backups.download');
 });
 
 Route::get('/verify-otp', [OTPController::class, 'index'])->name('otp.verify');
